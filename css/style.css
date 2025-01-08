@@ -1,0 +1,539 @@
+@import "https://cdn.skypack.dev/ol/ol.css";
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#map {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  padding: 15px;
+  border-radius: 10px;
+  font: 0.9em sans-serif;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+}
+.ol-popup:after, .ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.ol-popup:after {
+  border-top-color: white;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+.ol-popup:before {
+  border-top-color: #cccccc;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+.ol-popup-closer:after {
+  content: "✖";
+}
+
+.button-admin {
+  position: fixed;
+  left: 10px;
+  bottom: 70px; /* Menggeser ke atas */
+  padding: -5px 10px;
+  background-color: rgb(44, 44, 44);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-admin:hover {
+  background-color: #3c3c3c; /* Mengubah warna hover */
+}
+
+.button-home {
+  position: relative;
+  left: 10px;
+  bottom: 40px; /* Menggeser ke atas */
+  padding: -5px 10px;
+  background-color: rgb(44, 44, 44);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-home:hover {
+  background-color: blue; /* Mengubah warna hover */
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Warna abu-abu transparan */
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.726);
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Menambahkan efek blur */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+}
+
+.navbar-title {
+  color: #fff;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.navbar-links {
+  color: #fff;
+  text-decoration: double;
+  padding: 5px 15px;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+  font-size: larger;
+  line-height: 1;
+}
+
+.navbar-links:hover {
+  color: #63b3ed; 
+  border-radius: 5px;
+}
+
+.navbar-links i {
+  margin-right: 8px;
+  font-size: 1rem;
+  vertical-align: auto;
+  color: #fff;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  background-color:  rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  z-index: 1001;
+}
+
+.navbar-toggle .bar {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+  border-radius: 2px;
+}
+
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.863);
+    width: 100%;
+    flex-direction: column;
+    padding: 1rem;
+    border-top: 2px solid #1a27e0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(24, 24, 27, 0.8);
+    z-index: 20000;
+  }
+
+  .navbar-menu.active {
+    display: flex;
+  }
+
+  .navbar-links {
+    padding: 15px 0;
+    text-align: center;
+    width: 20%;
+    margin: 5px 0;
+    border-bottom: 1px solid gray;
+  }
+
+  .navbar-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+  
+  .navbar-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .navbar-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0; 
+  width: 340px;
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px;
+  margin-top: 64px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background-image: url('https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2022/08/Google-Maps-icon-on-map.png');
+  background-size: cover;
+  display: block; 
+  transform: translateX(0);
+  opacity: 1;
+  
+}
+
+
+
+.sidebar.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    z-index: 1000;
+    overflow-y: auto;
+    transform: translateY(50%);
+    transition: transform 0.3s ease, height 0.3s ease;
+  }
+
+  .sidebar.active {
+    transform: translateY(0);
+    height: 100%; /* Memperbesar ukuran saat aktif */
+  }
+
+  /* footer {
+    display: none; /* Sembunyikan footer pada mode mobile */
+  
+}
+
+.sidebar input[type="text"],
+.sidebar input[type="file"] {
+  width: 100%;
+  padding: 8px; /* Tambahkan padding */
+  margin-bottom: 12px; /* Tambahkan margin */
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  transition: border-color 0.3s ease; /* Tambahkan transisi */
+}
+
+.sidebar input[type="text"]:focus,
+.sidebar input[type="file"]:focus {
+  border-color: #060716; /* Warna border saat fokus */
+}
+
+.sidebar button {
+  color: white;
+  padding: 10px 20px; /* Tambahkan padding */
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Tambahkan transisi */
+}
+
+/* button tambah data */
+#placeForm {
+  position: fixed;
+  top: 70px; 
+  left: 20px;
+  width: 300px; 
+  padding: 20px; 
+  background-color: white;
+  border: 1px solid #ccc; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+  z-index: 1000; 
+}
+
+
+#closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+#placeForm input[type="text"],
+#placeForm textarea {
+  margin-bottom: 10px;
+  padding: 8px; 
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+#showFormButton {
+  color: white;
+}
+
+#placeForm button:hover {
+  background-color: #0056b3;
+}
+
+#placeForm button {
+   
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.lokasi-item p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Sesuaikan lebar sesuai kebutuhan */
+}
+
+/* style.css */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 1000;
+        overflow-y: auto;
+        display: none; /* Default hidden */
+    }
+
+    .sidebar.active {
+        display: block; /* Show when active */
+    }
+
+    /* footer {
+        display: none; /* Hide footer on mobile */
+    }
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        top: 60px; /* Sesuaikan dengan tinggi navbar */
+        /* Pastikan tidak menutupi navbar */
+    }
+}
+
+.data-popup {
+  display: none;
+  position: fixed;
+  left: 320px;
+  top: 100px;
+  width: 250px;
+  height: auto;
+  background-color: #f7fafc;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  z-index: 2000;
+  overflow-y: auto;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.data-popup.active {
+  display: block;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.data-popup {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar-toggle .bar {
+    transition: all 0.3s ease;
+}
+
+.data-popup {
+    background-color: #ffffff; /* Warna latar belakang yang lebih cerah */
+    border-radius: 12px; /* Sudut lebih membulat */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Efek bayangan untuk tampilan elevasi */
+    padding: 20px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: scale(0.95); /* Sedikit lebih kecil untuk animasi masuk */
+    opacity: 0;
+}
+
+.data-popup.active {
+    transform: scale(1); /* Animasi scale untuk transisi */
+    opacity: 1;
+}
+
+/* Konten di dalam data-popup */
+.data-popup-content {
+    padding: 20px;
+    background-color: #f7fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0; /* Garis lembut untuk detail */
+}
+
+/* Judul data-popup dengan gaya menarik */
+.data-popup h3 {
+    color: #2b6cb0; /* Warna teks biru gelap */
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #63b3ed; /* Garis bawah berwarna */
+    padding-bottom: 8px;
+}
+
+/* Gaya gambar dalam data-popup */
+.data-popup img {
+    border-radius: 10px; /* Sudut gambar lebih membulat */
+    max-width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk gambar */
+    transition: transform 0.3s ease;
+}
+
+.data-popup img:hover {
+    transform: scale(1.05); /* Sedikit zoom saat di-hover */
+}
+
+/* Tambahkan efek hover pada tombol atau elemen interaktif */
+button:focus,
+.data-popup-content button:hover {
+    background-color: #3182ce;
+    color: white;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.6);
+}
+
+/* Style teks dan paragraf */
+.data-popup p {
+    color: #4a5568;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+.lokasi-item:hover {
+    background-color: #edf2f7; /* Warna latar belakang hover */
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.6); /* Efek fokus */
+}
+
+@media (max-width: 768px) {
+  .data-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Sesuaikan lebar dengan sidebar */
+    height: 50%; /* Sesuaikan tinggi dengan sidebar */
+    background-color: white;
+    z-index: 2000;
+    overflow-y: auto;
+    transform: translateY(50%);
+    transition: transform 0.3s ease, height 0.3s ease;
+    display: none; /* Default hidden */
+  }
+
+  .data-popup.active {
+    display: block; /* Show when active */
+    transform: translateY(0);
+    height: 100%; /* Memperbesar ukuran saat aktif */
+  }
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 10px; /* Adjust spacing between items */
+}
+
+.sidebar {
+  display: block; /* Pastikan selalu tampil */
+  transform: translateX(0);
+  opacity: 1;
+}
+
+#dataSidebar {
+	display: none;
+	background-color: white; /* Mengatur background menjadi putih */
+}

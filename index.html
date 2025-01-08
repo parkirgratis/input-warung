@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Parkir Gratis Bandung</title>
+	<link rel="stylesheet" href="./css/style.css" type="text/css" />
+	<link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
+	<script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@latest/ol.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div id="isi"></div>
+	<nav
+		class="fixed top-0 z-20 backdrop-blur-lg bg-black/40 flex items-center md:justify-between sm:justify-end justify-end p-2 w-full h-16">
+		<div>
+			<a href="/index.html" class="hidden md:block ml-5">
+				<img src="../../img/logo.png" width="50" height="24">
+			</a>
+		</div>
+		<span class=" flex items-center  text-white  ">
+			TEKAN MAP UNTUK MENAMBAHKAN DATA
+		</span>
+		<div class="relative flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
+
+			<details class="md:hidden relative">
+				<summary class="text-white cursor-pointer text-base py-2 px-4 bg-gray-500 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-600 hover:scale-105">
+				  Menu
+				</summary>
+				<div class="absolute top-full -left-20 flex flex-col bg-black/50 p-4 rounded-md mt-1 space-y-2 z-10">
+				  <a href="https://parkirgratis.if.co.id/">
+					<div class="mb-4 flex justify-center items-center">
+					  <img src="../../img/logo.png" width="50" height="24" alt="Logo">
+					</div>
+				  </a>
+				  <a href="https://parkirgratis.if.co.id/">
+					<button
+					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
+					  HOME
+					</button>
+				  </a>
+				  <a href="#" id="showDataButtondc">
+					<button
+					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
+					  TAMPILKAN DATA
+					</button>
+				  </a>
+				  <a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html">
+					<button
+					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
+					  ABOUT US
+					</button>
+				  </a>
+				  <a href="https://parkirgratis.if.co.id/pages/login/login.html">
+					<button
+					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-800 rounded-lg hover:bg-sky-500 hover:text-black transition duration-200">
+					  LOGIN ADMIN
+					</button>
+				  </a>
+				</div>
+			  </details>
+		</div>
+
+
+		<div class="hidden md:flex items-center space-x-6"> <!-- Mengubah space-x-4 ke space-x-6 -->
+			<a href="https://parkirgratis.if.co.id/" class="flex items-center">
+				<button class="custom-button desc transition px-4 py-2 text-sm flex items-center rounded-full bg-gradient-to-r from-purple-400 via-purple-600 to-blue-500 hover:from-blue-500 hover:to-purple-400 hover:scale-105 transform duration-300 shadow-md hover:shadow-lg shadow-purple-400">
+					<span class="flex items-center">
+						<span class="text-white font-semibold tracking-wider">HOME</span>
+					</span>
+				</button>
+			</a>
+			
+			
+			<a id="showDataButton" class="flex items-center">
+				<button class="custom-button desc transition px-4 py-2 text-sm flex items-center rounded-lg bg-gradient-to-r from-red-500 to-orange-500 hover:from-orange-500 hover:to-red-500 hover:scale-105 transform duration-300 shadow-md hover:shadow-lg shadow-red-400">
+					<span class="flex items-center">
+						<span class="text-white font-semibold tracking-wider">TAMPILKAN DATA</span>
+					</span>
+				</button>
+			</a>
+			
+			<a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html" class="flex items-center">
+				<button class="custom-button desc transition px-4 py-2 text-sm flex items-center rounded-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-500 hover:to-blue-500 hover:scale-105 transform duration-300 shadow-md hover:shadow-lg shadow-blue-300">
+					<span class="flex items-center">
+						<span class="text-white font-semibold tracking-wide">ABOUT US</span>
+					</span>
+				</button>
+			</a>
+		</div>
+
+		<a href="https://parkirgratis.if.co.id/pages/login/login.html" class="hidden md:block ml-4"> <!-- Tambahkan margin kiri -->
+			<button
+				class="border-2 border-transparent border-l-white shadow-transparent hover:border-l-[#4DA6FF] hover:border-b-[#4DA6FF] transition px-2 py-1 text-white text-sm flex items-center hover:shadow-xl hover:shadow-[#4D4DFF]/50">
+				<span>
+					<img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png"
+						class="rounded-full" alt="" width="40px">
+				</span>
+				<div class="flex flex-wrap -m-2">
+					<div class="flex items-center space-x-4 justify-end">
+						<h2 class="text-sm text-left px-2 hidden md:block title" style="color: white; font-family: 'Poppins', sans-serif;">
+							Are you admin?
+						</h2>
+						
+						<p class="text-sm font-semibold text-left px-2 hidden md:block desc" style="color: #FFC107; font-family: 'Poppins', sans-serif;">
+							Login Here
+						</p>
+						
+						<p class="text-sm text-left px-2 md:hidden desc" style="color: #FFC107; font-family: 'Poppins', sans-serif;">
+							LOGIN
+						</p>
+						
+					</div>
+					
+				</div>
+			</button>
+		</a>
+		
+		
+	</nav>
+
+
+
+	<div id='map'></div>
+
+	<div id="sidebar" class="sidebar">
+		<div class="bg-gradient-to-r from-purple-400 via-purple-600 to-blue-500 py-2 text-white text-center mb-6 rounded-md" style="font-family: 'Poppins', sans-serif;">
+			Input Warung Gratis
+		</div>
+		<div id="sidebar-content">
+			<label for="namatempat" class="text-gray-600 font-semibold">Nama Tempat</label>
+			<input type="text" id="namatempat" class="ring-2" name="namatempat" placeholder="Nama warung"
+				required><br>
+
+			<label for="lokasi" class="text-gray-600 font-semibold">Lokasi</label>
+			<input type="text" class="ring-2" id="lokasi" name="lokasi" placeholder="Lokasi warung"
+				required><br>
+
+			<label for="jam_buka" class="text-gray-600 font-semibold">Jam Buka</label>
+			<input type="text" class="ring-2" id="jam_buka" name="jam_buka" placeholder="Jam buka warung"
+				required><br>
+
+			<label for="metodebayar" class="text-gray-600 font-semibold">Metode Pembayaran</label>
+			<div>
+				<label>
+					<input type="checkbox" name="metodebayar" value="Cash"> Cash
+				</label>
+				<label>
+					<input type="checkbox" name="metodebayar" value="QRIS"> QRIS
+				</label>
+				<label>
+					<input type="checkbox" name="metodebayar" value="Credit Card"> Credit Card
+				</label>
+			</div>
+
+			<label for="uploadImage" class="text-gray-600 font-semibold">Gambar</label>
+			<input type="file" class="ring-2" id="uploadImage" name="uploadImage" accept="image/*" required><br>
+
+			<div style="display: block; flex-flow: row;" class="pt-3">
+				<div class="cf-turnstile" data-sitekey="0x4AAAAAAAz7--YqI6wtt7jq" data-size="flexible"
+					data-callback="verifyCaptcha"></div>
+			</div>
+
+			<input type="hidden" id="long" name="long" value="">
+			<input type="hidden" id="lat" name="lat" value="">
+
+			<div class="button-container">
+				<button id="closeSidebar" type="button"
+					class="bg-red-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110">
+					Back
+				</button>
+				<button id="insertmarkerbutton" type="button"
+					class="bg-blue-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110">
+					Input
+				</button>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<div id="dataSidebar" class="sidebar" style="display: none; background-color: white;">
+		<div class="sidebar-title">Data Tempat Parkir</div>
+		<div id="dataSidebar-content">
+			
+		</div>
+		<button id="closeDataSidebar"
+			class="bg-blue-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110">
+			Back
+		</button>
+	</div>
+	
+
+	<div id="dataPopup" class="data-popup">
+		<div id="dataPopup-content" class="p-4">
+			<h3 class="text-lg font-bold mb-2">Nama Tempat</h3>
+			<p class="text-sm text-gray-600 mb-1">Lokasi: Lokasi Tempat</p>
+			<p class="text-sm text-gray-600 mb-3">Fasilitas: Fasilitas Tempat</p>
+			<img src="" alt="Gambar Tempat" class="w-full h-auto rounded mb-3">
+			<!-- <button id="closeDataPopup" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Tutup</button> -->
+		</div>
+	</div>
+	<script src="js/croot.js" type="module"></script>
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+	<script>
+		let captchaVerified = false;
+
+		function verifyCaptcha() {
+			captchaVerified = true;
+		}
+	</script>
+</body>
+
+</html>
