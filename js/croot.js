@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function fetchDataAndRender() {
     fetch(
-      "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/lokasi"
+      "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/warung"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // map.on('movestart', disposePopover);
 
 fetch(
-  "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/marker"
+  "https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/markerwarung"
 )
   .then((response) => response.json())
   .then((data) => {
