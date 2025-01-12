@@ -27,7 +27,7 @@ export function insertMarker(namatempat,long,lat,lokasi,fasilitas){
             anchor: [0.5, 46],
             anchorXUnits: 'fraction',
             anchorYUnits: 'pixels',
-            src: '../../img/marker.png',
+            src: '../../img/bluemarker.png',
             scale: 0.05 
           }),
         })
@@ -75,7 +75,7 @@ export function createMarker(map, coordinates) {
 
 function createMarkerElement() {
   const element = document.createElement('div');
-  element.innerHTML = '<img src="../../img/marker.png" alt="Marker" style="width: 20px; height: 20px;">';
+  element.innerHTML = '<img src="../../img/bluemarker.png" alt="Marker" style="width: 20px; height: 20px;">';
   return element;
 }
 
