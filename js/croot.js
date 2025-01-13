@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       item.nama_tempat || "Nama Tempat"
                     }</h3>
                     <p>${item.lokasi || "Lokasi"}</p>
-                    <p>${item.fasilitas || "Fasilitas"}</p>
+                    <p>${item.jam_buka || "Jam Buka"}</p>
                 </div>
                 
             `;
@@ -335,10 +335,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     dataPopupContent.innerHTML = `
             <h3 class="text-lg font-bold mb-2">${item.nama_tempat}</h3>
-            <p class="text-sm text-gray-600 mb-1">Lokasi: ${item.lokasi}</p>
-            <p class="text-sm text-gray-600 mb-3">Fasilitas: ${
-              item.fasilitas
-            }</p>
+            <p class="text-sm text-gray-600">Lokasi: ${item.lokasi}</p>
+            <p class="text-sm text-gray-600">Jam Buka: ${item.jam_buka}</p>
+            <p class="text-sm text-gray-600">Pembayaran: ${item.metode_pembayaran}</p>
             <img src="${item.gambar || "default.jpg"}" alt="${
       item.nama_tempat
     }" class="w-full h-auto rounded mb-3">
