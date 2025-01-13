@@ -27,43 +27,26 @@
 			</a>
 		</div>
 		<div class="relative flex gap-4 justify-center md:ml-auto md:pr-10 items-center">
-
-			<details class="md:hidden relative">
-				<summary class="text-white cursor-pointer text-base py-2 px-4 bg-gray-500 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-600 hover:scale-105">
-				  Menu
-				</summary>
-				<div class="absolute top-full -left-20 flex flex-col bg-black/50 p-4 rounded-md mt-1 space-y-2 z-10">
-				  <a href="https://parkirgratis.if.co.id/">
-					<div class="mb-4 flex justify-center items-center">
-					  <img src="../../img/logo.png" width="50" height="24" alt="Logo">
-					</div>
-				  </a>
-				  <a href="https://parkirgratis.if.co.id/">
-					<button
-					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
-					  HOME
-					</button>
-				  </a>
-				  <a href="#" id="showDataButtondc">
-					<button
-					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
-					  TAMPILKAN DATA
-					</button>
-				  </a>
-				  <a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html">
-					<button
-					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-700 rounded-md hover:border-b-2 hover:border-blue-400 transition duration-200 hover:shadow-lg hover:shadow-blue-400/50">
-					  ABOUT US
-					</button>
-				  </a>
-				  <a href="https://parkirgratis.if.co.id/pages/login/login.html">
-					<button
-					  class="w-full flex items-center justify-center text-white text-sm px-4 py-2 bg-gray-800 rounded-lg hover:bg-sky-500 hover:text-black transition duration-200">
-					  LOGIN ADMIN
-					</button>
-				  </a>
-				</div>
-			  </details>
+			<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="md:hidden block text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center" type="button">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+				</svg>&nbsp;Menu
+			</button>
+			
+			<!-- Dropdown menu -->
+			<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+				<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+					<li>
+					<a href="https://parkirgratis.if.co.id/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Halaman Utama</a>
+					</li>
+					<li>
+					<a href="https://parkirgratis.if.co.id/pages/aboutus/aboutus.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tentang Kami</a>
+					</li>
+					<li>
+					<a href="https://parkirgratis.if.co.id/pages/login/login.html" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Login Admin</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 
 
