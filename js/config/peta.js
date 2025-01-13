@@ -75,7 +75,8 @@ function centerMapOnUserLocation() {
         Swal.fire({
           icon: "success",
           title: "Terima Kasih",
-          text: "Lokasi Anda telah kami dapatkan. Semoga harimu selalu menyenangkan!"
+          text: "Lokasi Anda telah kami dapatkan. Semoga harimu selalu menyenangkan!",
+          showConfirmButton: false,
         });
       },
       (error) => {
@@ -85,7 +86,8 @@ function centerMapOnUserLocation() {
         Swal.fire({
           icon: "error",
           title: "Gagal Mendapatkan Lokasi",
-          text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan."
+          text: "Tidak dapat mengakses lokasi Anda. Pastikan izin lokasi diaktifkan.",
+          showConfirmButton: false,
         });
       }
     );
@@ -93,7 +95,8 @@ function centerMapOnUserLocation() {
     Swal.fire({
       icon: "error",
       title: "Geolocation Tidak Didukung",
-      text: "Geolocation tidak didukung oleh browser ini."
+      text: "Geolocation tidak didukung oleh browser ini.",
+      showConfirmButton: false,
     });
   }
 }
