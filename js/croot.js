@@ -317,7 +317,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p>${item.lokasi || "Lokasi"}</p>
                     <p>${item.jam_buka || "Jam Buka"}</p>
                 </div>
-                
             `;
 
       itemElement.addEventListener("click", () => {
@@ -338,13 +337,15 @@ document.addEventListener("DOMContentLoaded", function () {
             <p class="text-sm text-gray-600">Lokasi: ${item.lokasi}</p>
             <p class="text-sm text-gray-600">Jam Buka: ${item.jam_buka}</p>
             <p class="text-sm text-gray-600">Pembayaran: ${item.metode_pembayaran}</p>
-            <img src="${item.gambar || "default.jpg"}" alt="${
-      item.nama_tempat
-    }" class="w-full h-auto rounded mb-3">
-            <!-- <button id="closeDataPopup" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Tutup</button> -->
+            <img src="${item.gambar || "default.jpg"}" alt="${item.nama_tempat}" class="w-full h-auto rounded mb-3">
+            <button id="closeDataPopup" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Tutup</button>
         `;
 
     dataPopup.classList.add("active");
+    const closeButton = document.getElementById("closeDataPopup");
+    closeButton.addEventListener("click", () => {
+        dataPopup.classList.remove("active");
+    });
   }
 
   // document.getElementById('closeDataPopup').addEventListener('click', function() {
