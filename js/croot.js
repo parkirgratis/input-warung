@@ -141,6 +141,48 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Coordinates saved:", coordinate);
   });
 
+  document.getElementById("getlocation").addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const longitude = parseFloat(document.getElementById("long").value);
+    const latitude = parseFloat(document.getElementById("lat").value);
+
+    if (isNaN(longitude) || isNaN(latitude) || longitude < -180 || longitude > 180 || latitude < -90 || latitude > 90) {
+        Swal.fire("Error", "Please enter valid longitude and latitude values within valid ranges.", "error");
+        return;
+    }
+
+    const requestData = { long: longitude, lat: latitude };
+
+    fetch("https://asia-southeast2-awangga.cloudfunctions.net/parkirgratis/data/gis/region", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            return response.json().then((error) => {
+                throw new Error(error.message || "Failed to fetch data.");
+            });
+        }
+        return response.json();
+    })
+    .then((result) => {
+        const lokasiString = `${result.village || ''}, ${result.sub_district || ''}, ${result.district || ''}, ${result.province || ''}`
+            .replace(/\s*,\s*,/g, ',')
+            .trim();
+
+        document.getElementById("lokasi").value = lokasiString;
+
+        Swal.fire("Success", "Lokasi berhasil ditemukan.", "success");
+    })
+    .catch((error) => {
+        Swal.fire("Error", `Terjadi kesalahan: ${error.message}`, "error");
+    });
+});
+
   document
     .getElementById("insertmarkerbutton")
     .addEventListener("click", function () {
