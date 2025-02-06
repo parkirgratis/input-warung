@@ -6,6 +6,12 @@ body {
   height: 100%;
 }
 
+  /* Darken the clock icon */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: brightness(0.5); /* Adjust to make it darker */
+  opacity: 1; /* Ensure visibility */
+}
+
 #map {
   position: fixed;
   top: 0;
@@ -284,7 +290,6 @@ body {
 .sidebar input[type="file"] {
   width: 100%;
   padding: 8px; /* Tambahkan padding */
-  margin-bottom: 12px; /* Tambahkan margin */
   border: 2px solid #e5e7eb;
   border-radius: 4px;
   transition: border-color 0.3s ease; /* Tambahkan transisi */

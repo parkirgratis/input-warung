@@ -1,5 +1,4 @@
 import { map } from "./config/peta.js";
-// import {onClosePopupClick,onDeleteMarkerClick,onMapClick,onMapPointerMove,disposePopover} from './controller/popup.js';
 import {
   onClick,
   setValue,
@@ -155,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const placeName = document.getElementById("namatempat").value;
       const location = document.getElementById("lokasi").value;
       const opentime = document.getElementById("jam_buka").value;
+      const closetime = document.getElementById("jam_tutup").value;
       const paymethod = Array.from(
           document.querySelectorAll('input[name="metodebayar"]:checked')
       ).map((checkbox) => checkbox.value);
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = {
           nama_tempat: placeName,
           lokasi: location,
-          jam_buka: opentime,
+          jam_buka: opentime + " - " + closetime,
           metode_pembayaran: paymethod,
           lat: lat,
           lon: lon,
