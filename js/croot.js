@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("getlocation").addEventListener("click", (event) => {
     event.preventDefault();
+    document.getElementById("lokasi").disabled = true;
 
     const longitude = parseFloat(document.getElementById("long").value);
     const latitude = parseFloat(document.getElementById("lat").value);
@@ -175,7 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
             .trim();
 
         document.getElementById("lokasi").value = lokasiString;
-
+        document.getElementById("lokasi").disabled = false;
+        document.getElementById("insertmarkerbutton").classList.remove("hidden");
         Swal.fire("Success", "Lokasi berhasil ditemukan.", "success");
     })
     .catch((error) => {
